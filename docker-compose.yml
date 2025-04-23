@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mongodb:
+    build: ./node
+    container_name: dev-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: sua_senha-super-segura
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - dev-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  dev-network:
+    driver: bridge
